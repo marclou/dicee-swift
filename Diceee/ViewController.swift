@@ -19,13 +19,23 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        randomDiceImage()
     }
 
     @IBAction func rollButton(_ sender: Any) {
-        randomDice1Index = Int.random(in: 0 ... 5)
-        randomDice2Index = Int.random(in: 0 ... 5)
+        randomDiceImage()
     }
     
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        randomDiceImage()
+    }
+ 
+    func randomDiceImage () {
+        randomDice1Index = Int.random(in: 0 ... 5) + 1
+        randomDice2Index = Int.random(in: 0 ... 5) + 1
+        
+        diceImageView1.image = UIImage(named: "dice\(randomDice1Index)")
+        diceImageView2.image = UIImage(named: "dice\(randomDice2Index)")
+    }
 }
 
